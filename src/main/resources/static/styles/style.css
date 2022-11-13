@@ -1,0 +1,13 @@
+.invalid-feedback-custom {
+    width:100%;
+    margin-top:.25rem;
+    font-size:.875em;
+    color:#dc3545
+}
+
+.index-top {
+    font-family: "Arial Black";
+    color: #0b7bdb;
+    align-content: center;
+    font-size: large;
+}

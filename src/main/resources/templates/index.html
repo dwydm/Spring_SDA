@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.2/css/bootstrap.min.css">
+    <script src="/webjars/bootstrap/5.2.2/js/bootstrap.min.js"></script>
+    <link th:href="@{/styles/style.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <div class="index-top">
+    <p> <h1>Main Welcome Page</h1></p>
+    </div>
+    <p th:text="'Heeeeeeelo' + ' ' + ${sayMore} + ' ' + ${user.firstName}"></p>
+    <div>
+<!--        <form action="/mvc/user" method="get">-->
+<!--            <button type="submit" class="btn btn-primary">Formularz nowego użytkownika</button>-->
+<!--        </form>-->
+        <a class="btn btn-outline-success" href="/mvc/user/userlist" role="button">Lista userów</a>
+        <a class="btn btn-outline-primary" href="/mvc/user" role="button">Dodaj nowego usera</a>
+    </div>
+</div>
+</body>
+</html>
