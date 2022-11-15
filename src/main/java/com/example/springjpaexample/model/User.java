@@ -36,4 +36,6 @@ public class User {
     @Setter
     private String password;
 
+    private String role;
+
 }

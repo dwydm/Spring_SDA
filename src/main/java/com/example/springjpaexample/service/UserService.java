@@ -3,6 +3,7 @@ package com.example.springjpaexample.service;
 import com.example.springjpaexample.model.User;
 import com.example.springjpaexample.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,6 +16,7 @@ import java.util.stream.StreamSupport;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder encode;
 
     public List<User> findAllUsers() {
         return StreamSupport.stream(userRepository.findAll().spliterator(),false)
@@ -26,6 +28,7 @@ public class UserService {
     }
 
     public User save(User user) {
+        user.setPassword(encode.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -49,6 +52,8 @@ public class UserService {
 
         if (user.getPassword() == null) {
             user.setPassword(currentInDB.getPassword());
+        } else {
+            user.setPassword(encode.encode(user.getPassword()));
         }
         return userRepository.save(user);
     }

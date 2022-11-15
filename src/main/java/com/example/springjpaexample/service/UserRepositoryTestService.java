@@ -5,6 +5,7 @@ import com.example.springjpaexample.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -13,9 +14,13 @@ import org.springframework.stereotype.Service;
 public class UserRepositoryTestService implements CommandLineRunner {
 
     private final UserRepository userRepository;
-
+    private final BCryptPasswordEncoder encoder;
     @Override
     public void run(String... args) throws Exception {
+
+//        log.info("user: " + encoder.encode("rr1"));
+//        log.info("admin: " + encoder.encode("nn1"));
+
 //        userRepository.save(new User("Bob", "Dywan", "dywan5", "password"));
 //        userRepository.save(new User("Michael", "Klakson", "klakson", "password2"));
 //        userRepository.save(new User("Jason", "Domofon", "domffz", "password3"));
