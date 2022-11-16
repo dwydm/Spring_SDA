@@ -1,8 +1,8 @@
 package com.example.springjpaexample.web.mvc.form;
 
+import com.example.springjpaexample.model.User;
 import lombok.*;
-import org.hibernate.validator.constraints.pl.NIP;
-import org.springframework.lang.Nullable;
+
 import javax.validation.constraints.*;
 
 @Getter
@@ -22,4 +22,5 @@ public class CreateUserForm {
     @Size(min = 8)
     @NotBlank(message = "Pole nie może być puste")
     private String password;
+    private User.RoleType role;
 }

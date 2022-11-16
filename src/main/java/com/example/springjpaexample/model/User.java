@@ -10,11 +10,12 @@ import javax.persistence.*;
 @Entity
 public class User {
 
-    public User(String firstName, String lastName, String login, String password) {
+    public User(String firstName, String lastName, String login, String password, RoleType role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
         this.password = password;
+        this.role = role;
     }
 
     @Id
@@ -35,7 +36,13 @@ public class User {
 
     @Setter
     private String password;
+    @Setter
+    @Enumerated(EnumType.STRING)
+    private RoleType role;
 
-    private String role;
+    public enum RoleType {
+        ROLE_USER, ROLE_ADMIN
+    }
 
 }
+

@@ -35,6 +35,12 @@
                  class="invalid-feedback-custom">
             </div>
         </div>
+        <div class="mb-3">
+            <label for="role" class="form-label">Rola:</label>
+            <select id="role" class="form-control" type="text" th:field="*{role}">
+                <option th:each="roleOption: ${roles}" th:value="${roleOption}" th:text="${roleOption}"/>
+            </select>
+            </div>
         <div>
             <button type="submit" class="btn btn-warning">Zapisz</button>
             <a type="button" class="btn btn-outline-primary" href="/mvc">Wróć do początku</a>

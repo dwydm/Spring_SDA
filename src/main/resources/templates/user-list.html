@@ -22,6 +22,7 @@
             <th>Imię</th>
             <th>Nazwisko</th>
             <th>Login</th>
+            <th>Rola</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -31,6 +32,7 @@
             <td th:text="${user.firstName}"></td>
             <td th:text="${user.lastName}"></td>
             <td th:text="${user.login}"></td>
+            <td th:text="${user.role}"></td>
             <td>
                         <span>
                         <a class="btn btn-outline-info" th:href="@{/mvc/user/edit/__${user.id}__}"

@@ -2,8 +2,12 @@ package com.example.springjpaexample.web.rest;
 
 import com.example.springjpaexample.model.User;
 import com.example.springjpaexample.service.UserService;
+import com.example.springjpaexample.service.auth.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,6 +51,17 @@ public class UserRestController {
 
     @PutMapping
     public User update(@RequestBody User user) {
+/*        CustomUserDetails principal = ((CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        String loggedUsername = ((CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        String authority = principal.getAuthorities()
+                .stream()
+                .map(GrantedAuthority::getAuthority)
+                .findFirst()
+                .orElse(null);
+        User userFromDB = userService.findUserById(user.getId());
+        if(!loggedUsername.equals(userFromDB.getLogin()) || !userFromDB.getRole().equals(User.RoleType.ROLE_ADMIN)) {
+            throw new RuntimeException("You can update only your own detail");
+        }*/
         return userService.update(user);
     }
 

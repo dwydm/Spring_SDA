@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Slf4j
 @Controller
@@ -25,13 +24,15 @@ public class UserController {
     @GetMapping
     public String create(ModelMap modelMap) {
         modelMap.addAttribute("user", new CreateUserForm());
+        modelMap.addAttribute("roles", User.RoleType.values());
         return "create-user";
     }
 
     @PostMapping
-    public String handleCreate(@ModelAttribute("user") @Valid CreateUserForm form, Errors errors, final RedirectAttributes redirectAttributes) {
+    public String handleCreate(@ModelAttribute("user") @Valid CreateUserForm form, Errors errors, final RedirectAttributes redirectAttributes, ModelMap modelMap) {
         log.info("Creating user from form: {}", form);
         if(errors.hasErrors()) {
+            modelMap.addAttribute("roles", User.RoleType.values());
             return "create-user";
         }
         if(form.getId() != null){
@@ -58,6 +59,7 @@ public class UserController {
     @GetMapping("/edit/{id}")
     public String userEdit(ModelMap modelMap, @PathVariable("id") Long id) {
         modelMap.addAttribute("user", userService.findUserById(id));
+        modelMap.addAttribute("roles", User.RoleType.values());
         return "create-user";
     }
 
