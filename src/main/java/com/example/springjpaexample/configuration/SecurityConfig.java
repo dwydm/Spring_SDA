@@ -27,11 +27,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user").permitAll()
                 .antMatchers("/mvc/user/userlist").authenticated()
                 .antMatchers("/mvc/user/edit/**").hasRole("ADMIN")
-//                .anyRequest().authenticated()
+//                .anyRequest()
+                .and()
+                .httpBasic()
                 .and()
                 .formLogin()
                 .and()
-                .logout();
+                .logout()
+                .and()
+                .csrf().disable();
     }
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
