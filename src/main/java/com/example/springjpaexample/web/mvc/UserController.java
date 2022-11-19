@@ -50,7 +50,7 @@ public class UserController {
     @GetMapping("/userlist")
     public String userList(ModelMap modelMap, @ModelAttribute("message") String message) {
         modelMap.addAttribute("users", userService.findAllUsers());
-        if(!message.isEmpty() || message != null) {
+        if(!message.isEmpty()) {
             modelMap.addAttribute("message", message);
         }
         return "user-list";
